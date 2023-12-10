@@ -159,6 +159,7 @@ public class CircleCircleDetection : MonoBehaviour
 
     void Update()
     {
+        float dt = Time.deltaTime;
 
         Vector2 position1 = square.transform.position;
         float radius1 = square.transform.localScale.x * 0.5f;
@@ -177,6 +178,7 @@ public class CircleCircleDetection : MonoBehaviour
 
         square.GetComponent<SpriteRenderer>().color = color;
         circle.GetComponent<SpriteRenderer>().color = color;
+        capsule.GetComponent<SpriteRenderer>().color = color;
 
         Vector3 capsulePosition = capsule.transform.position;
         Vector3 capsuleDirection = capsule.transform.up;
@@ -209,9 +211,73 @@ public class CircleCircleDetection : MonoBehaviour
             square.GetComponent<SpriteRenderer>().color = Color.green;
 
         }
-        else
+
+
+        float dir = 0.0f;
+        if (Input.GetKey(KeyCode.W))
         {
-            capsule.GetComponent<SpriteRenderer>().color = Color.red;
+            dir = 1.0f;
         }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            dir = -1.0f;
+        }
+        float dy = dir * dt * 3;
+        float xdir = 0.0f;
+        if (Input.GetKey(KeyCode.A))
+        {
+            xdir = -1.0f;
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            xdir = 1.0f;
+        }
+        float dx = xdir * dt * 3;
+        square.transform.position = square.transform.position + new Vector3(dx, dy, 0.0f);
+
+        float cdir = 0.0f;
+        if (Input.GetKey(KeyCode.T))
+        {
+            cdir = 1.0f;
+        }
+        else if (Input.GetKey(KeyCode.G))
+        {
+            cdir = -1.0f;
+        }
+        float cdy = cdir * dt * 3;
+        float cxdir = 0.0f;
+        if (Input.GetKey(KeyCode.F))
+        {
+            cxdir = -1.0f;
+        }
+        else if (Input.GetKey(KeyCode.H))
+        {
+            cxdir = 1.0f;
+        }
+        float cdx = cxdir * dt * 3;
+        capsule.transform.position = capsule.transform.position + new Vector3(cdx, cdy, 0.0f);
+
+        float cirdir = 0.0f;
+        if (Input.GetKey(KeyCode.I))
+        {
+            cirdir = 1.0f;
+        }
+        else if (Input.GetKey(KeyCode.K))
+        {
+            cirdir = -1.0f;
+        }
+        float cirdy = cirdir * dt * 3;
+        float cirxdir = 0.0f;
+        if (Input.GetKey(KeyCode.J))
+        {
+            cirxdir = -1.0f;
+        }
+        else if (Input.GetKey(KeyCode.L))
+        {
+            cirxdir = 1.0f;
+        }
+        float cirdx = cirxdir * dt * 3;
+        circle.transform.position = circle.transform.position + new Vector3(cirdx, cirdy, 0.0f);
+
     }
 }
