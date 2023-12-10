@@ -28,13 +28,13 @@ public class Part2 : MonoBehaviour
     void Update()
     {
         float dt = Time.deltaTime;
-        syVel += g * dt * dt;
+        syVel += sMass * g * dt * dt;
         square.transform.position += new Vector3(sxVel, syVel, 0);
 
-        cyVel += g * dt * dt;
+        cyVel += cMass * g * dt * dt;
         circle.transform.position += new Vector3(cxVel, cyVel, 0);
 
-        capyVel += g * dt * dt;
+        capyVel += capMass * g * dt * dt;
         capsule.transform.position += new Vector3(capxVel, capyVel, 0);
 
         if (square.transform.position.y - ground.transform.position.y <= square.transform.localScale.y /2 + ground.transform.localScale.y /2)
